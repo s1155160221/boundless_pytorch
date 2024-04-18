@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 matplotlib.style.use('ggplot')
 
 #save model for resume training
-save_model_path = 'project/Boundless-in-Pytorch-master/outputs/'
+save_model_path = 'outputs/'
 def save_model(epochs_trained, model_G, model_D, optimizer_G, optimizer_D, plot_list):
     torch.save({
         'epoch': epochs_trained,

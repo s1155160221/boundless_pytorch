@@ -9,7 +9,7 @@ from p_model import *
 from p_utils import *
 
 #parameters settings
-output_folder = 'project/Boundless-in-Pytorch-master/outputs/gen'
+output_folder = 'outputs/gen'
 batch_size = 1
 device = ('cuda' if torch.cuda.is_available() else 'cpu')
 print(f"Computation device: {device}\n")
@@ -18,12 +18,12 @@ print(f"Computation device: {device}\n")
 model = Generator().to(device)
 
 #dataset, dataloader
-test_dataset = ImageDataset("project/Boundless-in-Pytorch-master/Pic_test", ratio=0.25)
+test_dataset = ImageDataset("Pic_test", ratio=0.25)
 test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, num_workers=4, pin_memory=True)
 
 if __name__ == "__main__":
     #load checkpoint
-    load_checkpoint(device, 'project/Boundless-in-Pytorch-master/outputs/checkpoints/model_2000.pt', model)
+    load_checkpoint(device, 'outputs/checkpoints/model_2000.pt', model)
 
     #testing
     model.eval()

@@ -2,10 +2,10 @@ import glob
 import os
 import shutil
 
-category_txt = 'project/Boundless-in-Pytorch-master/data_256_category.txt'
-data256_folder = 'project/Boundless-in-Pytorch-master/data_256'
-output_folder = 'project/Boundless-in-Pytorch-master/img_train'
-img_per = 201 #obtain X img from each category in download_list.txt
+category_txt = 'data_256_category.txt'
+data256_folder = 'data_256'
+output_folder = 'img_train'
+img_per = 200 #obtain X img from each category in download_list.txt
 
 with open(category_txt) as f:
     w = f.read()

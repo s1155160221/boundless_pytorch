@@ -32,9 +32,9 @@ extractor = InceptionExtractor().to(device)
 extractor.eval()
 
 #dataset, dataloader
-train_dataset = ImageDataset("project/Boundless-in-Pytorch-master/img_train", ratio=0.25)
+train_dataset = ImageDataset("img_train", ratio=0.25)
 train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=4, pin_memory=True)
-test_dataset = ImageDataset("project/Boundless-in-Pytorch-master/img_test", ratio=0.25)
+test_dataset = ImageDataset("img_test", ratio=0.25)
 test_loader = DataLoader(test_dataset, batch_size=9, shuffle=False, num_workers=4, pin_memory=True)
 
 #criterion, optimizer
@@ -121,7 +121,7 @@ def train_step(train_loader, model_G, model_D, criterion_rec, optimizer_G, optim
 
 #test step
 def test_step(test_loader, model_G, epoch):
-    test_path = 'project/Boundless-in-Pytorch-master/outputs/test/'
+    test_path = 'outputs/test/'
     """test_path = test_path + str(epoch+1) + '/'
     if not os.path.exists(test_path):
         os.makedirs(test_path)"""
@@ -150,9 +150,9 @@ if __name__ == "__main__":
     ax[1].twinx()
 
     #load checkpoint
-    resume = True
+    resume = False
     if resume:
-        start_epoch, plot_list = load_checkpoint(device, 'project/Boundless-in-Pytorch-master/outputs/checkpoints/model_80.pt', generator, discriminator, optimizer_G, optimizer_D)
+        start_epoch, plot_list = load_checkpoint(device, 'outputs/checkpoints/model_100.pt', generator, discriminator, optimizer_G, optimizer_D)
         train_loss_pixel, train_loss_adv = plot_list[0], plot_list[1]
         train_loss_G, train_loss_D = plot_list[2], plot_list[3]
         plot_list = [train_loss_pixel, train_loss_adv, train_loss_G, train_loss_D]
@@ -185,7 +185,7 @@ if __name__ == "__main__":
 
         #save image/test for every x epoch
         if ((epoch+1) % save_n_img) == 0:
-            save_image(img_grid, 'project/Boundless-in-Pytorch-master/outputs/train/' + f"{epoch+1}.png", nrow=1, normalize=False)
+            save_image(img_grid, 'outputs/train/' + f"{epoch+1}.png", nrow=1, normalize=False)
             test_step(test_loader, generator, epoch)
 
         print('-'*50)
